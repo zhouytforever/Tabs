@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>vueTab</title>
+    <style>
+        ul, ul li {
+            list-style: none;
+        }
+
+        #tab-nav ul {
+            height: 50px;
+            display: flex;
+            flex-direction: row;
+        }
+
+        #tab-nav > ul > li {
+            float: left;
+            background-color: #457845;
+        }
+
+        #tab-nav > ul > li > a {
+            padding: 0px 20px;
+            height:50px;
+            line-height: 50px;
+        }
+        a:hover{
+
+        }
+
+        a {
+            text-decoration-line: none;
+        }
+    </style>
+    <script src="vue.js"></script>
+</head>
+<body>
+<nav id="tab-nav">
+    <ul>
+        <li v-for="(item,index) in items">
+            <a href="#" v-on:click="tab(item,index)" v-bind:class="{active: activeIndex === index}">
+                {{item.title}}
+            </a>
+        </li>
+    </ul>
+    <div class="x-content">{{items[activeIndex].content}}</div>
+</nav>
+<script>
+    new Vue({
+        el: '#tab-nav',
+        data: {
+            activeIndex: 0,
+            items: [
+                {title: '产品介绍1', content: '1111111111111'},
+                {title: '产品介绍2', content: '2222222222222'},
+                {title: '产品介绍3', content: '3333333333333'}
+            ]
+        },
+        methods: {
+            tab: function (item,index) {
+                console.log(arguments)
+                this.activeIndex = index;
+            }
+
+        }
+    });
+</script>
+</body>
+</html>
